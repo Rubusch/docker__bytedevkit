@@ -60,6 +60,7 @@ RUN apt-get install -y   \
     x11-apps
 
 
+
 ################################################################################
 ## locale settings
 RUN locale-gen en_US.UTF-8
@@ -69,13 +70,14 @@ ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 
+
 ################################################################################
 ## install repo
 
-RUN mkdir -p /usr/local/bin
+RUN mkdir -p /usr/local/
 RUN cd /usr/local && git clone -b stable https://github.com/Rubusch/repo.git
-RUN ln -s /usr/local/repo/repo /usr/local/bin/repo
-
+RUN cp -arf /usr/local/repo/repo /usr/bin/repo
+RUN chmod a+x /usr/bin/repo
 
 
 ################################################################################
@@ -91,7 +93,11 @@ RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
 
 RUN mkdir -p ${YOCTODIR}
 RUN cd ${YOCTODIR} && repo init -u https://github.com/bytesatwork/bsp-platform-st.git -b ${BRANCH_YOCTO}
-RUN repo sync
+
+# TODO 
+#RUN sudo cp -f ${YOCTODIR}/.repo/repo/repo /usr/bin/repo
+
+RUN cd ${YOCTODIR} && repo sync
 
 
 ################################################################################
