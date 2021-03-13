@@ -16,7 +16,7 @@ ARG YOCTOVERSION="2.7"
 #ARG BRANCH_YOCTO="dunfell"
 #ARG YOCTOVERSION="3.1"
 
-ARG YOCTODIR="/home/user/workdir/bytedevkit/${YOCTOVERSION}"
+ARG YOCTODIR="/home/${USER}/workdir/bytedevkit/${YOCTOVERSION}"
 
 
 ################################################################################
@@ -95,7 +95,7 @@ RUN mkdir -p ${YOCTODIR}
 RUN cd ${YOCTODIR} && repo init -u https://github.com/bytesatwork/bsp-platform-st.git -b ${BRANCH_YOCTO}
 
 # TODO 
-#RUN sudo cp -f ${YOCTODIR}/.repo/repo/repo /usr/bin/repo
+RUN sudo cp -f ${YOCTODIR}/.repo/repo/repo /usr/bin/repo
 
 RUN cd ${YOCTODIR} && repo sync
 
