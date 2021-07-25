@@ -47,7 +47,7 @@ export BB_NUMBER_THREADS="$(nproc)"
 bitbake bytesatwork-minimal-image $@
 
 ## find output at
-## ~/workdir/bytedevkit-stm32mp1/3.2/build/tmp/deploy/images/bytedevkit-stm32mp1
+## ~/poky/bytedevkit-stm32mp1/3.2/build/tmp/deploy/images/bytedevkit-stm32mp1
 
 echo "READY."
 echo

@@ -27,7 +27,6 @@ NB: Where 1.28.6 is the latest version (currently not supported by devian/ubuntu
 ```
 $ cd ./yocto
 $ docker-compose up
-docker $> build.sh
 ```
 
 
@@ -36,8 +35,11 @@ docker $> build.sh
 In case of a re-build, make sure to clean sufficiently before  
 
 ```
-$ cd ./docker
+$ cd ./yocto
 $ docker-compose -f ./docker-compose.yml run --rm bytedevkit /bin/bash
+docker$ cd ~/poky/bytedevkit-stm32mp1/3.2
+docker$ MACHINE=bytedevkit-stm32mp1 DISTRO=poky-bytesatwork EULA=1 . setup-environment build
+docker$ bitbake bytesatwork-minimal-image
 ```
 
 **yocto SDK** - Inside the **same** session, you can compile as follows.  
