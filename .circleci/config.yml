@@ -2,6 +2,7 @@
 version: 2.1
 jobs:
     build_yocto:
+        machine: true
         steps:
           ## recently circleci:git complained about this (...)
           - run: git config --global user.email "l.rubusch@gmail.com"
