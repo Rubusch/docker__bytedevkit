@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+    bytedevkit:
+        container_name: bytedevkit
+        image: ${USER}/bytedevkit
+        build:
+            context: build_context
+            dockerfile: Dockerfile
+            args:
+                USER: ${USER}
+
+        user: ${USER}
+        stdin_open: true  ## docker run -i
+        tty: true         ## docker run -i
+        #privileged: true
+
+        environment:
+         - USER
+
+        volumes:
+         - ~/.gitconfig:/home/${USER}/.gitconfig
+         - ~/.ssh:/home/${USER}/.ssh
+         - ./poky:/home/${USER}/poky  ## folder does not need to be around
+         - type: bind
+           source: ./build_configs    ## folder must be around
+           target: /home/$USER/configs
