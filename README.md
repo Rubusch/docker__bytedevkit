@@ -1,45 +1,43 @@
 [![CircleCI](https://circleci.com/gh/Rubusch/docker__bytedevkit.svg?style=shield)](https://circleci.com/gh/Rubusch/docker__bytedevkit)
-[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 
 
-# Build Container
-
-Contains a Dockerfile for building the board support package.  
+# Docker Container for my Bytedevkit
 
 
+## References
 
-## Resources
-
-https://bytewiki.readthedocs.io/en/latest/yocto/2.7/bytedevkit.html
-
+https://bytewiki.readthedocs.io/en/latest/yocto/3.2/bytedevkit-stm32mp1.html
 
 
-## Yocto
-
-Login user: 'root'  
-TODO    
-
-
-### Build
+## Tools Needed
 
 ```
-$ cd ./docker__yocto/
-$ time docker build --build-arg USER=$USER -t rubuschl/bytedevkit:$(date +%Y%m%d%H%M%S) .
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-comp\
+ose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ sudo chmod a+x /usr/local/bin/docker-compose
 ```
 
+NB: Where 1.28.6 is the latest version (currently not supported by devian/ubuntu package management)  
 
-### Usage
+
+## Build
+
 
 ```
-$ docker images
-    REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
-    rubuschl/bytedevkit      20191104161353      cbf4cb380168        24 minutes ago      10.5GB
-    ...
-
-$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/poky/build rubuschl/bytedevkit:20191104161353 /bin/bash
-
-docker$> build.sh
+$ cd ./yocto
+$ docker-compose up
+docker $> build.sh
 ```
 
 
+## Usage
 
+In case of a re-build, make sure to clean sufficiently before  
+
+```
+$ cd ./docker
+$ docker-compose -f ./docker-compose.yml run --rm bytedevkit /bin/bash
+```
+
+**yocto SDK** - Inside the **same** session, you can compile as follows.  
