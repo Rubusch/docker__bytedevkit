@@ -16,6 +16,8 @@ jobs:
           ## build
           - checkout
           - run: cd ./yocto && docker-compose up --exit-code-from bytedevkit
+          
+          #- run: cd ./yocto && docker-compose -f ./docker-compose.yml run --rm bytedevkit --exit-code-from bytedevkit /usr/local/bin/build.sh "-c runall=fetch"
           ## due to ci time limitation, run a fetch all instead of build all
 
 workflows:
