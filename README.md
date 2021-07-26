@@ -43,3 +43,9 @@ docker$ bitbake bytesatwork-minimal-image
 ```
 
 **yocto SDK** - Inside the **same** session, you can compile as follows.  
+
+
+## Login
+
+u: root  
+p: rootme  
