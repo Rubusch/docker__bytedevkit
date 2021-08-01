@@ -20,7 +20,9 @@ services:
 
         volumes:
          - ~/.gitconfig:/home/${USER}/.gitconfig:ro
-         - ~/.ssh:/home/${USER}/.ssh:ro
+         ## actually put .ssh in ro, but take care of known_hosts updates
+         #- ~/.ssh:/home/${USER}/.ssh:ro
+         - ~/.ssh:/home/${USER}/.ssh
          - ./poky:/home/${USER}/poky  ## folder does not need to be around
          - type: bind
            source: ./build_configs    ## folder must be around

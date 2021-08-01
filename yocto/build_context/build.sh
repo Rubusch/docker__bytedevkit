@@ -10,7 +10,7 @@ BYTEDEVKIT_DIR="${YOCTO_DIR}/bytedevkit-stm32mp1/3.2"
 BUILD_DIR="${YOCTO_DIR}/build"
 
 ## permissions
-for item in "${YOCTO_DIR}" "${SSH_DIR}" "${MY_HOME}/.gitconfig"; do
+for item in "${YOCTO_DIR}" "${SSH_DIR}"; do
     if [ ! "${MY_USER}" == "$( stat -c %U ${item} )" ]; then
         ## may take some time
         sudo chown "${MY_USER}:${MY_USER}" -R ${item}
